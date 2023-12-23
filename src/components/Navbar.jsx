@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 const Navbar = () => {
-    const [user, setUser] = useState()
+    const [user, setUser] = useState(null)
     const router = useRouter()
 
     useEffect(() => {
@@ -29,15 +29,15 @@ const Navbar = () => {
     return (
         <nav className="flex justify-between items-center sm:p-8 p-2 md:px-16 mb-5">
             <Link href={user ? '/' : '/registration/login'}>
-                <h1 className="md:text-5xl text-4xl font-bold bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text md:leading-[64px] leading-[48px]">
-                    GIF Gallery
+                <h1 className="text-3xl font-extrabold md:leading-[64px] leading-[48px]">
+                    GIPHY
                 </h1>
             </Link>
 
-            {!user && (
+            {user && (
                 <div className="flex items-center sm:gap-x-5 gap-2">
                     <span className="font-semibold md:text-lg text-base hidden sm:block">
-                        Hello, {user && user.displayName}
+                        Hello, {user && user.providerData[0].displayName}
                     </span>
                     <Link href={`/user/favorite?uid=${user.uid}`} className="">
                         <svg
