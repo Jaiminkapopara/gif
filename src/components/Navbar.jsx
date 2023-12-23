@@ -1,9 +1,11 @@
 'use client'
 
 import { auth } from '@/utils/firebase'
+import { signOut } from 'firebase/auth'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 const Navbar = () => {
     const [user, setUser] = useState(null)
