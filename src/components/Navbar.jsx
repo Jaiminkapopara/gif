@@ -38,7 +38,10 @@ const Navbar = () => {
 
       {user && (
         <div className="flex items-center sm:gap-x-5 gap-2">
-          <Link href={`/user/favorite?uid=${user.uid}`} className="flex gap-2 border-[1.6px] border-black rounded-xl sm:px-7 sm:py-4 px-4 py-3">
+          <Link
+            href={`/user/favorite?uid=${user.uid}`}
+            className="flex gap-2 border-[1.6px] border-black rounded-xl sm:px-7 sm:py-4 px-4 py-3"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="black"
