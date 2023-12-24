@@ -70,6 +70,7 @@ const Feed = ({ authUser }) => {
 
   const handleFavoriteChange = async (gifId) => {
     try {
+      toast.success('Favorite list updated.')
       const res = await fetch(`/api/user/${authUser.uid}?gifId=${gifId}`);
       if (res.ok) setFavorites(await res.json());
     } catch (error) {
@@ -127,7 +128,7 @@ const Feed = ({ authUser }) => {
           <div className="lg:columns-4 md:columns-3 sm:columns-2 columns-1">
             {gifs.map((gif) => {
               return (
-                <div key={gif.id} className="relative ">
+                <div key={gif.id} className="relative overflow-hidden">
                   <img
                     className="rounded-md mb-1 w-full"
                     src={gif.images.fixed_height.url}
