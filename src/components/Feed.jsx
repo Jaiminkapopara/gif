@@ -61,10 +61,12 @@ const Feed = ({ authUser }) => {
       }
     };
     const source = axios.CancelToken.source();
-    fetchData();
+    // fetchData();
+    const timeout = setTimeout(fetchData, 500)
 
     return () => {
       source.cancel("Operation canceled by cleanup");
+      clearTimeout(timeout)
     };
   }, [search, offset]);
 
