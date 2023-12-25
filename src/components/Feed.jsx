@@ -6,6 +6,8 @@ import { getDoc, doc } from "firebase/firestore";
 import toast from "react-hot-toast";
 import Loader from "./Loader";
 import { db } from "@/utils/firebase";
+import Input from "./Input";
+import Button from "./Button";
 
 const Feed = ({ authUser }) => {
   const [search, setSearch] = useState("");
@@ -18,8 +20,6 @@ const Feed = ({ authUser }) => {
 
   const limit = 20;
   const totalPages = 10;
-
-  const user = authUser;
 
   useEffect(() => {
     const fetchUserFavorites = async () => {
@@ -70,7 +70,7 @@ const Feed = ({ authUser }) => {
 
   const handleFavoriteChange = async (gifId) => {
     try {
-      toast.success('Favorite list updated.')
+      toast.success("Favorite list updated.");
       const res = await fetch(`/api/user/${authUser.uid}?gifId=${gifId}`);
       if (res.ok) setFavorites(await res.json());
     } catch (error) {
@@ -107,19 +107,13 @@ const Feed = ({ authUser }) => {
   return (
     <main className="bg-white rounded-[20px] w-full shadow md:mt-0 sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl m-auto p-6 min-h-[72vh] relative mb-10">
       <div className="flex mb-6 relative">
-        <input
-          type="text"
-          className="w-full bg-slate-100 px-7 py-4 ps-12 mr-4 rounded-xl"
-          placeholder="Article name of keywords"
+        <Input
+          action={handleSearchChange}
+          placeholder={"Article name of keywords"}
+          type={"text"}
           value={search}
-          onChange={handleSearchChange}
         />
-        <button
-          className="bg-black px-7 py-4 text-white rounded-xl"
-          value="Search"
-        >
-          Search
-        </button>
+        <Button text={"Search"}/>
       </div>
       {loading ? (
         <Loader />
@@ -152,10 +146,10 @@ const Feed = ({ authUser }) => {
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          fill= {favorites?.includes(gif.id) ? "red" : "white"}
+                          fill={favorites?.includes(gif.id) ? "red" : "white"}
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
-                          stroke= {favorites?.includes(gif.id) ? "red" : "black"} 
+                          stroke={favorites?.includes(gif.id) ? "red" : "black"}
                           className="w-6 h-6"
                         >
                           <path
@@ -171,6 +165,7 @@ const Feed = ({ authUser }) => {
               );
             })}
           </div>
+          
           <div className="mt-8 mb-5 flex justify-center gap-5">
             <button
               className="text-sm font-semibold"

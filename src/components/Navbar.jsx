@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Button from "./Button";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -58,12 +59,7 @@ const Navbar = () => {
             </svg>
             Favorite
           </Link>
-          <button
-            onClick={Logout}
-            className="bg-black sm:px-7 sm:py-4 px-4 py-3 text-white rounded-xl"
-          >
-            Logout
-          </button>
+          <Button action={Logout} text={"Logout"}/>
         </div>
       )}
     </nav>

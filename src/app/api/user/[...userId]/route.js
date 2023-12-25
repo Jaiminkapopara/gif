@@ -14,14 +14,14 @@ import {
 export const GET = async (request, { params }) => {
   const url = new URL(request.url);
   const gifId = url.searchParams.get("gifId");
-  const userRef = doc(db, "users", ...params.favId);
+  const userRef = doc(db, "users", ...params.userId);
   const usersRef = collection(db, "users");
 
   const querySnapshot = await getDocs(
     query(
       usersRef,
       where("favoriteGif", "array-contains", gifId),
-      where("userId", "==", ...params.favId)
+      where("userId", "==", ...params.userId)
     )
   );
 
