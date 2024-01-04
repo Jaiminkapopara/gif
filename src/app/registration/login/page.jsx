@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { signInWithEmailAndPassword} from "firebase/auth";
 import toast from "react-hot-toast";
 import { auth } from "@/utils/firebase";
 import Loader from "@/components/Loader";
@@ -40,9 +40,7 @@ const Login = () => {
         userData.email,
         userData.password
       );
-      await updateProfile(auth.currentUser, {
-        displayName: userCredential.user.displayName,
-      });
+    
       toast.success("Successfully Login!");
       router.push("/");
     } catch (error) {
