@@ -47,13 +47,9 @@ const Feed = ({ authUser }) => {
         search !== prevSearch && handlePageChange(1);
 
         const response = await axios.get(url);
-        setGifs(
-          Array.from(new Set(response.data.data.map((obj) => obj.id))).map(
-            (id) => {
-              return response.data.data.find((obj) => obj.id === id);
-            }
-          )
-        );
+        setGifs(response.data.data);
+        // console.log(response.data.data);
+        
       } catch (error) {
         toast.error(error);
       } finally {
